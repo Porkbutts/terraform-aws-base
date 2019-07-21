@@ -1,2 +1,2 @@
-s3_bucket_name_prefix = "tf-state-s3"
-dynamodb_name_prefix = "tf-state-dynamo"
+s3_bucket_name = "tf-state-s3-nyrckrpg"
+dynamodb_table_name = "tf-state-dynamo-nyrckrpg"

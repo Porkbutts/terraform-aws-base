@@ -1,19 +1,12 @@
-variable "s3_bucket_name_prefix" {}
-variable "dynamodb_name_prefix" {}
+variable "s3_bucket_name" {}
+variable "dynamodb_table_name" {}
 
 provider "aws" {
   region = "us-west-2"
 }
 
-resource "random_string" "hash" {
-  length = 8
-  upper = false
-  number = false
-  special = false
-}
-
 resource "aws_s3_bucket" "terraform_state_s3_bucket" {
-  bucket = "${var.s3_bucket_name_prefix}-${random_string.hash.result}"
+  bucket = "${var.s3_bucket_name}"
 
   versioning {
     enabled = true
@@ -29,7 +22,7 @@ resource "aws_s3_bucket" "terraform_state_s3_bucket" {
 }
 
 resource "aws_dynamodb_table" "terraform_state_locking_dynamodb" {
-  name = "${var.dynamodb_name_prefix}-${random_string.hash.result}"
+  name = "${var.dynamodb_table_name}"
   hash_key = "LockID"
   read_capacity = 20
   write_capacity = 20
