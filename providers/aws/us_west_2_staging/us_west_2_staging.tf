@@ -6,11 +6,25 @@ variable "azs"             { }
 variable "private_subnets" { }
 variable "public_subnets"  { }
 
+# variable "mongodb_atlas_username" {}
+# variable "mongodb_atlas_api_key" {}
+# variable "mongodb_atlas_org_id" {}
+
 # variable "bastion_instance_type" { }
 
 provider "aws" {
   region = "${var.region}"
 }
+
+# provider "mongodbatlas" {
+#   username = "${var.mongodb_atlas_username}"
+#   api_key = "${var.mongodb_atlas_api_key}"
+# }
+#
+# module "mongodb" {
+#   source = "../../../modules/atlas/mongodb"
+#   mongodb_atlas_org_id = "${var.mongodb_atlas_org_id}"
+# }
 
 module "network" {
   source = "../../../modules/aws/network"
